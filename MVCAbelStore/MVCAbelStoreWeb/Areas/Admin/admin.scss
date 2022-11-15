@@ -1,0 +1,9 @@
+﻿$enable-rounded : false;
+
+$primary : #ff006e ;
+
+@import 'Thema/startbootstrap-sb-admin-2/scss/sb-admin-2.scss';
+
+.field-validation-error{
+    @extend .text-danger;
+}

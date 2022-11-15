@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="El Yapımı Kolye E-ticaret Sitesi">
+    <meta name="keywords" content="kolye, el yapımı, boncuk">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - MVCAbelStoreWeb</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+
+    <div class="header-info">
+        <div class="row">
+            <div class=" col-10 col-md-10 text-white text-center">
+                <i class="fa-solid fa-sun"></i> <small>ABEL Accessory Handmade ailesi olarak keyifli günler dileriz.</small>
+            </div>
+            <div class="col-2 col-md-2 text-end">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/abel_necklace/" class="text-white"><i class="fa-brands fa-instagram"></i><span class="text-white">abel_necklace</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="inner-header">
+                <div class="logo">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/Images/logo2.png" height="90px" />
+                    </a>
+                </div>
+
+                <div class="user-access">
+                    @await Component.InvokeAsync("UserBar")
+
+                </div>
+                <nav class="main-menu mobile-menu">
+                    <ul>
+                        <li><a class="text-white" asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                        <li><a class="text-white" asp-controller="Home" asp-action="Category">@await Component.InvokeAsync("RayonBar")</a></li>
+                        <li><a class="text-white" asp-controller="Home" asp-action="ContactUs">Bize Ulaşın</a></li>
+
+
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </header>
+
+
+
+
+    <div class="container-fluid  mb-5 justify-content-center p-0">
+        @RenderBody()
+        </main>
+    </div>
+
+
+
+    
+        <div class="social-links-warp">
+            <div class="container ">
+                <div class="social-links">
+                    <a href="https://www.instagram.com/abel_necklace/" class="instagram"><i class="fa-brands fa-instagram"></i><span>instagram</span></a>
+                    <a href="https://tr.pinterest.com/" class="pinterest"><i class="fa-brands fa-pinterest"></i><span>pinterest</span></a>
+                    <a href="https://tr-tr.facebook.com/" class="facebook"><i class="fa-brands fa-facebook"></i><span>facebook</span></a>
+                    <a href="https://twitter.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoidHIifQ%3D%3D%22%7D" class="twitter"><i class="fa-brands fa-twitter"></i><span>twitter</span></a>
+                    <a href="https://www.youtube.com/" class="youtube"><i class="fa-brands fa-youtube"></i><span>youtube</span></a>
+                </div>
+            </div>
+
+            <div class="container text-center pt-5">
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    @DateTime.Today.Year - MVC ABEL STORE - Tüm Hakları Saklıdır
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+
+
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/jquery.slicknav.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <script src="~/js/mixitup.min.js"></script>
+    <script src="~/js/main.js"></script>
+
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        $(() => {
+            $('body').on('mousedown', (e) => {
+                //$('.category-panel').removeClass('show').css('z-index', '-1');
+            });
+
+            $('a.rayon-btn').on('click', (e) => {
+                $('.category-panel').removeClass('show').addClass('d-none').css('z-index', '-1');
+                const id = $(e.currentTarget).attr('data-category-id');
+                $('div#categoryPanel_' + id).addClass('show').removeClass('d-none').css('z-index', '1');
+            });
+
+            @if (TempData["addedToCart"] is not null)
+            {
+               <text>
+
+                Swal.fire({
+                title: 'Teşekkürler!',
+                html: 'Ürününüz Sepete Eklendi... <a href="/account/shoppingcart"> Sepete Git ',
+                icon: 'success',
+                toast: true,
+                timer: 3000,
+                confirmButtonText: 'Alışverişe Devam Et',
+                position: 'top-end'
+
+                })
+            </text>
+            }
+
+
+
+        })
+    </script>
+
+</body>
+</html>
+
+
+

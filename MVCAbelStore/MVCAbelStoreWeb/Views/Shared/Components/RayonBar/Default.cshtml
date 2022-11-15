@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Rayon>
+
+
+@foreach (var rayon in Model.Where(p=>p.Categories.Any()))
+{
+
+   
+        <li>
+            <a class="text-white" href="#">@rayon.Name</a>
+            <ul class="bg-dark sub-menu">
+                @foreach (var category in rayon.Categories)
+                {
+                    <li>
+                        <a class="text-white" asp-route="category" asp-route-name="@category.Name.ToSafeUrlString()" asp-route-id="@category.Id">@category.Name</a>
+                    </li>
+                }
+            </ul>
+        </li>
+   
+
+
+}

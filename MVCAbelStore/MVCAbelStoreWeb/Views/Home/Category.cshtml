@@ -1,0 +1,87 @@
+﻿@model Category
+@using X.PagedList.Mvc;
+@using X.PagedList;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = Model.Name;
+    var page = (int?)ViewBag.Page ?? 1;
+    var pageSize = 12;
+    var products = Model.Products.Where(p => p.Enabled).ToPagedList(page, pageSize);
+}
+<br />
+<h2> @Model.Rayon.Name / @Model.Name</h2>
+<hr />
+
+@if (Model.Products.Any())
+{
+    <div class="row row-cols-1 row-cols-md-4 g-4 ms-2 me-2">
+        @foreach (var product in products)
+
+        {
+            <div class="col">
+                <div class="card h-100 product-card ">
+                    <img class="card-img-top" src="@product.ImageSrc" />
+                    <div class="card-body">
+                        <h4 class="card-title">@product.Name</h4>
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h2 class="card-text text-success">@product.DiscountedPrice.Value.ToString("c")</h2>
+                                <p class="card-text text-decoration-line small">@product.Price.ToString("c2")</p>
+                            </div>
+
+                            <a asp-route="product" asp-route-name="@product.Name.ToSafeUrlString()" asp-route-id="@product.Id" class="btn btn-info ml-auto">
+                                <i class="fa fa-search"></i>İncele
+                            </a>
+                        </div>
+
+
+                        <div class="bg-success  text-white h6 p-4 position-absolute " style="top:10px; right:10px;">%@product.DiscountRate <div class="small" style="font-size:.85rem;">İndirim</div></div>
+
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="container ">
+        <img class="justify-content-center" src="~/Images/yaindahizmetinizde1.jpg" />
+    </div>
+
+}
+
+
+<br />
+<br />
+<nav class="d-flex justify-content-center py-2">
+    <ul class="pagination">
+        <li class="page-item @(products.HasPreviousPage ? "":"disabled")">
+            <a class="page-link" asp-route="category" asp-route-id="@Model.Id" asp-route-name="@Model.Name.ToSafeUrlString()" asp-route-page="@(products.HasPreviousPage ? page-1:page)">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= products.PageCount; i++)
+        {
+            <li class="page-item @(i==page ? "active":"")"><a class="page-link" asp-route="category" asp-route-id="@Model.Id" asp-route-name="@Model.Name.ToSafeUrlString()" asp-route-page="@i">@(i)</a></li>
+        }
+
+        <li class="page-item @(products.HasNextPage ? "":"disabled")">
+            <a class="page-link" asp-route="category" asp-route-id="@Model.Id" asp-route-name="@Model.Name.ToSafeUrlString()" asp-route-page="@(products.HasNextPage ? page+1:page)">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<br />
+<br />
+
+
+
+
+
+

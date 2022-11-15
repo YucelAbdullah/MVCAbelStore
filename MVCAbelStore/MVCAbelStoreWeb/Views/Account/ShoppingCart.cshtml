@@ -1,0 +1,145 @@
+﻿@model ApplicationUser
+@{
+    ViewData["Title"] = "Sepetiniz";
+    var counter = 0;
+    var total = Model.ShoppingCartItems.Sum(p => p.Product.DiscountedPrice ?? p.Product.Price);
+}
+
+@if (Model.ShoppingCartItems.Any())
+{
+    <table class="table table-bordered bg-white ">
+        <thead>
+            <tr>
+                <th>
+                    No.
+                </th>
+                <th>
+                    Foto
+                </th>
+                <th>
+                    Ürün Adı
+                </th>
+                <th>
+                    Adeti
+                </th>
+                <th>
+                    Tutar
+                </th>
+                <th>
+                    İşlem
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var shoppingCartItem in Model.ShoppingCartItems.GroupBy(p => p.Product).Select(p => new
+            {
+                Product = p.Key,
+                Quantity = p.Count(),
+                Amount = p.Count() * p.Key.DiscountedPrice ?? p.Key.Price
+            }))
+            {
+                <tr>
+                    <td>
+                        @(++counter)
+                    </td>
+                    <td>
+                        <img src="@shoppingCartItem.Product!.ImageSrc" height="80" />
+                    </td>
+                    <td>
+                        <h4>
+                            @shoppingCartItem.Product.Name
+                        </h4>
+
+                        <small>@string.Join(",", shoppingCartItem.Product.Categories.Select(p => p.Name))</small>
+                        <h5>
+                            @shoppingCartItem.Product.DiscountedPrice.Value.ToString("c2")
+                        </h5>
+                        <h6 class="text-decoration-line-through">
+                            @shoppingCartItem.Product.Price.ToString("c2")
+                        </h6>
+
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <a type="submit" class="btn btn-outline-secondary" asp-controller="Home" asp-action="RemoveFromCart" asp-route-id="@shoppingCartItem.Product.Id">
+                                <i class="fa fa-minus"></i>
+                            </a>
+
+                            <input class="form-control border-secondary" type="text" name="Quantity" style="max-width: 64px; text-align:center" value="@shoppingCartItem.Quantity.ToString("n0")" />
+                            <a type="submit" class="btn btn-outline-secondary" asp-controller="Home" asp-action="AddToCart" asp-route-id="@shoppingCartItem.Product.Id">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                    </td>
+                    <td class="text-monospace text-end">
+                        @shoppingCartItem.Amount.ToString("c2")
+                    </td>
+                    <td>
+                        <a class="btn btn-link text-danger pt-4" asp-controller="Home" asp-action="RemoveAllFromCart" asp-route-id="@shoppingCartItem.Product.Id">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr >
+                <td colspan="4" class="text-end"> TOPLAM: </td>
+                <td colspan="1" class="text-monospace text-center text-success">
+                    @Model.ShoppingCartItems.Sum(p => p.Product.DiscountedPrice).Value.ToString("c2")
+                </td>
+                
+                
+            </tr>
+            <tr>
+                <td colspan="5" class="text-center">
+                    <a class="btn btn-secondary">ÖDEME YAP</a>
+                </td>
+                <td class="text-center text-success">
+                    <a class="btn btn-danger" id="clearCart" asp-controller="Home" asp-action="ClearCart">
+                        <i class=""></i>Sepeti Boşalt
+                    </a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+else
+{
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <h2 class="text-center position-relative m-9 text-danger">
+        <i class="fa fa-sad-tear"></i>
+        <br />
+        Sepetinizde Henüz ürün Bulunmamaktadır
+    </h2>
+}
+
+@section scripts {
+    <script>
+        $(() => {
+            $('#clearCart').on('click', (evt) => {
+                Swal
+                    .fire({
+                        icon: 'warning',
+                        title: 'UYARI!',
+                        html: 'Tüm ürünler sepetinizden çıkarılacaktır!',
+                        showCancelButton: true,
+                        confirmButtonText: 'Temizle',
+                        cancelButtonText: 'İptal'
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            window.location = '/home/clearcart';
+                        }
+                    });
+
+                return false;
+            });
+        });
+    </script>
+
+}

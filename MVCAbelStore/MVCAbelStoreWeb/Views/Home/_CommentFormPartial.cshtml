@@ -1,0 +1,42 @@
+﻿@model Comment 
+
+
+
+<div class=" card mt-3">
+    <div class="card-body">
+
+        <form asp-controller="Account" asp-action="Comment" method="post">
+            <input type="hidden" asp-for="ProductId" />
+            <div class="form-group">
+
+                <label asp-for="Text" ></label>
+                <textarea asp-for="Text" class="form-control"></textarea>
+
+
+            </div>
+            <div class="form-group mb-3">
+
+                <label asp-for="Rate"></label>
+                <select asp-for="Rate" class="form-control ">
+
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+
+                </select>
+
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary mb-2">
+                <i class="fa fa-comment" href="#"></i>
+                Gönder
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+
