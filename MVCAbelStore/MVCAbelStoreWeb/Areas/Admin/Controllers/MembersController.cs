@@ -22,7 +22,7 @@ namespace MVCAbelStoreWeb.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var model = await context.Users.ToListAsync();
-            return View();
+            return View(model);
         }
     }
 }

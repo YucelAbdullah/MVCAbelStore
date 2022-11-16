@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCAbelStoreData", "MVCAbel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MigrationsSqlServer", "MigrationSqlServer\MigrationsSqlServer.csproj", "{24B05A7D-8776-4D3C-8ACB-4CC4865C0938}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MigrationsNpgsql", "MigrationsNpgsql\MigrationsNpgsql.csproj", "{D9C6EEB8-2238-4CBC-B8AF-64E84E2FE5A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MigrationsNpgsql", "MigrationsNpgsql\MigrationsNpgsql.csproj", "{D9C6EEB8-2238-4CBC-B8AF-64E84E2FE5A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvcabelstoreapi", "mvcabelstoreapi\mvcabelstoreapi.csproj", "{721F6455-F045-4F54-A202-FDB57DEA0E66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D9C6EEB8-2238-4CBC-B8AF-64E84E2FE5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9C6EEB8-2238-4CBC-B8AF-64E84E2FE5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9C6EEB8-2238-4CBC-B8AF-64E84E2FE5A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{721F6455-F045-4F54-A202-FDB57DEA0E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{721F6455-F045-4F54-A202-FDB57DEA0E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{721F6455-F045-4F54-A202-FDB57DEA0E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{721F6455-F045-4F54-A202-FDB57DEA0E66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

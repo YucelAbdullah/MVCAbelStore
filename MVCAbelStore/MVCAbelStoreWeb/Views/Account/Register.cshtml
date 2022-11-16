@@ -13,7 +13,7 @@
                 <div class="d-none d-md-block col-md-5">
                     <img class="ms-3 container-fluid" height="620" width="360" src="~/Images/Giriş Kapısı.jpg" />
                 </div>
-                <div class="col-md-7 row">
+                <div class="col-md-7 ">
                     <div class="mb-3">
                         <label asp-for="UserName" class="form-label"></label>
                         <input asp-for="UserName" class="form-control" />
@@ -39,15 +39,15 @@
                         <input asp-for="BirthDate" class="form-control" />
                         <span asp-validation-for="BirthDate"></span>
                     </div>
+                    <br />
                     <div class="mb-3">
                         <label asp-for="Gender" class="form-label"></label>
                         <select class="dropdown" asp-items="@Html.GetEnumSelectList<Genders>()"></select>
                         <span asp-validation-for="Gender"></span>
                     </div>
-                    <hr />
 
                     <div asp-validation-summary="ModelOnly"></div>
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success d-flex justify-content-center  " style="width: 100%; text-center ">
 
                         <i class="fa fa-user-plus"></i> KAYDOL
                     </button>

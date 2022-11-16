@@ -12,16 +12,16 @@
     var products = Model.Products.Where(p => p.Enabled).ToPagedList(page, pageSize);
 }
 <br />
-<h2> @Model.Rayon.Name / @Model.Name</h2>
+<h2 class="text-center"> @Model.Rayon.Name / @Model.Name</h2>
 <hr />
 
 @if (Model.Products.Any())
 {
-    <div class="row row-cols-1 row-cols-md-4 g-4 ms-2 me-2">
+    <div class="row row-cols-1 row-cols-md-4 g-4 m-2">
         @foreach (var product in products)
 
         {
-            <div class="col">
+            <div class="col p-4">
                 <div class="card h-100 product-card ">
                     <img class="card-img-top" src="@product.ImageSrc" />
                     <div class="card-body">
