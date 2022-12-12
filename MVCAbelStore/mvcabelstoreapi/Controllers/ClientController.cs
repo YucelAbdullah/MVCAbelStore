@@ -21,14 +21,14 @@ namespace mvcabelstoreapi.Controllers
         }
 
         [HttpGet("rayons")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetRayons()
         {
             var model = await context.Rayons.Where(p => p.Enabled).Select(p => new { p.Id, p.Name }).ToListAsync();
             return Ok(model);
         }
 
         [HttpGet("rayons/{id}")]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> GetRayon(Guid id)
         {
             var model = await context.Rayons
                 .Where(p => p.Enabled).Select(p => new
@@ -40,9 +40,36 @@ namespace mvcabelstoreapi.Controllers
                 }).SingleOrDefaultAsync(p => p.Id == id);
             if (model == null)
             {
-                return BadRequest(model);
+                return BadRequest(id);
             }
             return Ok(model);
         }
+
+        [HttpGet("category/{id}/{page?}")]
+        public async Task<IActionResult> GetCategory(Guid id, int? page)
+        {
+            var model = await context.Categories.Where(p => p.Enabled)
+                .Select(p => new
+                {
+                    p.Id,
+                    p.Name,
+                    RayonName = p.Rayon!.Name,
+                    Product = p.Products.Where(c=>c.Enabled).Select(c => new
+                    {
+                        c.Id,
+                        c.Name,
+                        c.Price,
+                        c.DiscountedPrice,
+                        c.DiscountRate
+                    })
+                    .Skip(((page ?? 1)-1)*10).Take(10)
+                }).SingleOrDefaultAsync(p=>p.Id==id);
+            if (model == null)
+            {
+                return BadRequest(id);
+            }
+            return Ok(model);
+        }
+
     }
 }
